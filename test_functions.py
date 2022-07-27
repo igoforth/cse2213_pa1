@@ -38,7 +38,11 @@ def test_dist(x1,y1,x2,y2,distance):
     assert dist(x1,y1,x2,y2) == distance
 
 
-@pytest.mark.parametrize("temp",['racecar','55','stats','clear',False])
+#isPalindrome
+#first 3 pass, 'clear' fails but isn't handled when not a palindrome
+#False fails and isn't handled with TypeError -> bool
+#66 is a palindrome but fails because of TypeError -> integer
+@pytest.mark.parametrize("temp",['racecar','55','stats','clear',False,66])
 def test_isPalindrome(temp):
     assert isPalindrome(temp)
 
@@ -100,5 +104,4 @@ def test_displayItem(capsys,numbers,index,expected):
 
     captured_stdout, captured_stderr = capsys.readouterr()
     assert captured_stdout.strip() == expected
-
 

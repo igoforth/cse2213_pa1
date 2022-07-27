@@ -5,7 +5,7 @@ from functions import *
 #openFile
 # tests the file name, needs to have an if failed do this
 def test_openFile(capsys):
-    openFile('testing.txt')
+    openFile("testing.txt")
     captured_stdout, captured_stderr = capsys.readouterr()
     assert captured_stdout.strip() == "File opened."
 
@@ -13,7 +13,7 @@ def test_openFile(capsys):
 #FNF error
 #if failed -> say file not opened
 def test_openFile(capsys):
-    openFile('testing')
+    openFile("testing")
     captured_stdout, captured_stderr = capsys.readouterr()
     assert captured_stdout.strip() == "File not opened."
 
@@ -58,15 +58,48 @@ def geninputs():
 
 GEN = geninputs()
 def test_divide(monkeypatch):
-    monkeypatch.setattr('builtins.input', lambda _: next(GEN))
+    monkeypatch.setattr("builtins.input", lambda _: next(GEN))
 
     assert divide() == None
 
 #sq
-#first pass, second fail (round to 1 decimal), third pass, 4th fail -> TypeError
-@pytest.mark.parametrize("num,out",[(4,2),(10,3.2),(144,12),('y',7)])
+#first pass, second fail (round to 1 decimal), third pass, 4th fail -> TypeError, 5th fail -> math domain error -> cannot sqroot a neg number
+@pytest.mark.parametrize("num,out",[(4,2),(10,3.2),(144,12),('y',7),(-4,2)])
 def test_sq(num,out):
     assert sq(num) == out
+
+
+
+
+#greetUser 
+#all pass, 
+#testing input and output
+@pytest.mark.parametrize("first,middle,last,expected",[("Peter", "Benjamin", "Parker","Hello!\nWelcome to the program Peter Benjamin Parker\nGlad to have you!"),(1,2,3,"Hello!\nWelcome to the program 1 2 3\nGlad to have you!"), ("Walter", "Pensky", "Jackson IV","Hello!\nWelcome to the program Walter Pensky Jackson IV\nGlad to have you!")])
+def test_greetUser(capsys,first,middle,last,expected):
+    greetUser(first,middle,last)
+
+    captured_stdout, captured_stderr = capsys.readouterr()
+    assert captured_stdout.strip() == expected
+
+
+#displayItem
+#first passes
+#second fails -> IndexError -> out of range
+#third fails -> IndesError -> should not have a negative index
+@pytest.mark.parametrize("numbers, index,expected",[([1,5,9,8],2,"Your item at 2 index is 9"),([5,7,6,3,1],5,"Your item at 5 index is 0"),([9,6,2,1,99],-9,"Your item at -4 index is 0")])
+def test_displayItem(capsys,numbers,index,expected):
+    displayItem(numbers,index)
+
+    captured_stdout, captured_stderr = capsys.readouterr()
+    assert captured_stdout.strip() == expected
+
+
+
+
+
+
+
+
 
 
 

@@ -45,17 +45,35 @@ def test_isPalindrome(temp):
 
 
 #divide
+#first passes, second fails because of the y
 def geninputs():
     inputs = ['6','3']
+    inputs_2 = ['y','2']
 
     for item in inputs:
         yield item
+    
+    for item_2 in inputs_2:
+        yield item_2
 
 GEN = geninputs()
 def test_divide(monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: next(GEN))
 
-    assert divide() == 2.0
+    assert divide() == None
+
+#sq
+#first pass, second fail (round to 1 decimal), third pass, 4th fail -> TypeError
+@pytest.mark.parametrize("num,out",[(4,2),(10,3.2),(144,12),('y',7)])
+def test_sq(num,out):
+    assert sq(num) == out
+
+
+
+    
+
+
+    
 
 
 

@@ -11,18 +11,18 @@ def test_openFile(capsys):
 
 #initially going to fail
 #FNF error
-#if failed -> say file not opened
 def test_openFile(capsys):
-    openFile("testing")
+    openFile("share.txt")
     captured_stdout, captured_stderr = capsys.readouterr()
-    assert captured_stdout.strip() == "File not opened."
+    assert captured_stdout.strip() == "File not found"
+    
 
 
 #numbers
 #testing division with int and floats
 #passes first 2, fails 3rd bc it isn't equal -> create if doesn't equal
 #4th fails due to decimal rounding
-@pytest.mark.parametrize("num1,num2,div",[(4,2,2),(8.6,4.3,2),(42,7,7),(45,23,1.9)])
+@pytest.mark.parametrize("num1,num2,div",[(4,2,2),(8.6,4.3,2),(42,7,7),(45,23,1.9),('6','3',2)])
 def test_numbers(num1, num2,div):
     assert numbers(num1,num2) == div
 
@@ -38,7 +38,7 @@ def test_dist(x1,y1,x2,y2,distance):
     assert dist(x1,y1,x2,y2) == distance
 
 
-@pytest.mark.parametrize("temp",['racecar','55','stats','clear'])
+@pytest.mark.parametrize("temp",['racecar','55','stats','clear',False])
 def test_isPalindrome(temp):
     assert isPalindrome(temp)
 
@@ -81,6 +81,14 @@ def test_greetUser(capsys,first,middle,last,expected):
     captured_stdout, captured_stderr = capsys.readouterr()
     assert captured_stdout.strip() == expected
 
+#does not crash, but need to set parameters for being empty
+@pytest.mark.parametrize("first,middle,last,expected",[('','','t',"Hello!\nWelcome to the program   t\nGlad to have you!")])
+def test_greetUser2(capsys,first,middle,last,expected):
+    greetUser(first,middle,last)
+
+    captured_stdout, captured_stderr = capsys.readouterr()
+    assert captured_stdout.strip() == expected
+
 
 #displayItem
 #first passes
@@ -92,24 +100,5 @@ def test_displayItem(capsys,numbers,index,expected):
 
     captured_stdout, captured_stderr = capsys.readouterr()
     assert captured_stdout.strip() == expected
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-    
-
-
-
-
 
 

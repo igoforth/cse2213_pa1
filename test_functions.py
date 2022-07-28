@@ -44,7 +44,7 @@ def test_numbers(num1, num2, div):
 @pytest.mark.parametrize("x1,y1,x2,y2,distance",
                         [(1, 2, 3, 4, 2.8),
                         (0, 0, 0, 0, 0),
-                        ('1', '4', '5', '5', 0)])
+                        ('1', '4', '5', '5', "Not integer.")])
 def test_dist(x1, y1, x2, y2, distance):
     assert dist(x1, y1, x2, y2) == distance
 

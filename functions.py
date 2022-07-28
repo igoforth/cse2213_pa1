@@ -29,10 +29,10 @@ def openFile(filename):
 ## the result of a division
 # CORRECTIONS:
 # try/except/else for divide by zero, type error
-# added round function
+# added round (to base 1) function
 def numbers(num1, num2):
     try:
-        result = round(num1 / num2)
+        result = round(num1 / num2, 1)
     except TypeError:
         return "Not integer."
     except ZeroDivisionError:
@@ -42,11 +42,17 @@ def numbers(num1, num2):
 
 ## takes in two points
 ## finds the distance between the points
+# CORRECTIONS:
+# try/except/else for 
+# added absolute and round (to base 1) functions
 def dist(x1, y1, x2, y2):
-    dist = (x2 - x1) ** 2 + (y2 - y1) ** 2
-    dist = math.sqrt(dist)
-
-    return dist
+    try:
+        dist = abs(x2 - x1) ** 2 + abs(y2 - y1) ** 2
+        dist = round(math.sqrt(dist), 1)
+    except TypeError:
+        return "Not integer."
+    else:
+        return dist
 
 ## takes in a string -- reverses it
 ## then compares the two

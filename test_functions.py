@@ -21,15 +21,23 @@ def test_openFile(capsys):
     openFile("")
     captured_stdout, captured_stderr = capsys.readouterr()
     assert captured_stdout.strip() == "File not found"
+
+#OSError -> need an actual file name
+def test_openFile(capsys):
+    openFile(42)
+    captured_stdout, captured_stderr = capsys.readouterr()
+    assert captured_stdout.strip() == "File not found"
     
 
 
 #numbers
 #testing division with int and floats
 #passes first 2, fails 3rd bc it isn't equal -> create if doesn't equal
-#4th fails due to decimal rounding
+#fourth fails due to decimal rounding
 #5th fails due to TypeError -> cannot be a string
-@pytest.mark.parametrize("num1,num2,div",[(4,2,2),(8.6,4.3,2),(42,7,7),(45,23,1.9),('6','3',2)])
+#6th fails -> ZeroDivisionError -> cannot divide by zero
+#7th passes bc -> False == 0
+@pytest.mark.parametrize("num1,num2,div",[(4,2,2),(8.6,4.3,2),(42,7,7),(45,23,1.9),('6','3',2),(7,0,0),(False,7,0)])
 def test_numbers(num1, num2,div):
     assert numbers(num1,num2) == div
 
@@ -113,5 +121,3 @@ def test_displayItem(capsys,numbers,index,expected):
 
     captured_stdout, captured_stderr = capsys.readouterr()
     assert captured_stdout.strip() == expected
-
-

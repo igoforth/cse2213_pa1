@@ -57,13 +57,16 @@ def dist(x1, y1, x2, y2):
 ## takes in a string -- reverses it
 ## then compares the two
 def isPalindrome(temp):
-    test = temp[::-1]
-
-    if(test == temp):
-        return True
-
+    try:
+        test = temp[::-1]
+        if(test != temp):
+            raise AssertionError
+    except AssertionError:
+        return "Not a palindrome."
+    except TypeError:
+        return "Not a string."
     else:
-        return False
+        return True
 
 ## has input to receive two numbers
 ## divides the two, then outputs the result

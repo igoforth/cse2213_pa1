@@ -85,7 +85,14 @@ def divide():
 
 ## returns the squareroot of a particular number
 def sq(num):
-    return math.sqrt(num)
+    try:
+        math.sqrt(num)
+    except TypeError:
+        return "Not an int."
+    except ValueError:
+        return "ERROR - Invalid Input"
+    else:
+        return round(math.sqrt(num), 1)
 
 ## grabs user's name
 ## greets them by their entire name

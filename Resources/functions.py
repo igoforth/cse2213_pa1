@@ -2,28 +2,10 @@ import math
 
 ## opens a file in read mode
 ## filename received as a parameter
-# CORRECTIONS:
-# added custom exceptions for empty string and not string
-# # try/except/else for empty string, file not found, not string
-class NotStringError(Exception):
-    pass
-class EmptyStringError(Exception):
-    pass
 def openFile(filename):
-    try:
-        if not filename:
-            raise EmptyStringError
-        if not isinstance(filename, str):
-            raise NotStringError
-        infile = open(filename, "r")
-    except FileNotFoundError:
-        print("File not found.")
-    except EmptyStringError:
-        print("Empty string.")
-    except NotStringError:
-        print("Not string.")
-    else:
-        print("File opened.")
+    infile = open(filename, "r")
+
+    print("File opened.")
 
 ## takes two numbers and returns
 ## the result of a division

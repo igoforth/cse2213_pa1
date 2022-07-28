@@ -3,15 +3,15 @@ import pytest
 from functions import *
 
 # openFile
-# test 1: Will succeed with default
-# test 2: Tests for share.txt
+# test 1: Will succeed with testing.txt
+# test 2: Tests for share.txt (Cannot find)
 # test 3: Tests for empty string
 # test 4: Tests for integer input
 @pytest.mark.parametrize("file,message",
                         [("testing.txt", "File opened."),
-                        ("share.txt", "File not found"),
-                        ("", "File not found"),
-                        (42, "File not found")])
+                        ("share.txt", "File not found."),
+                        ("", "Empty string."),
+                        (42, "Not string.")])
 def test_openFile(capsys, file, message):
     openFile(file)
     captured_stdout, captured_stderr = capsys.readouterr()
@@ -58,7 +58,7 @@ def test_dist(x1, y1, x2, y2, distance):
                         ['racecar', '55', 'stats', 'clear', False, 66])
 def test_isPalindrome(temp):
     assert isPalindrome(temp)
-    
+
 # helper function for test_divide
 def geninputs(num1, num2):
     inputs = [num1, num2]

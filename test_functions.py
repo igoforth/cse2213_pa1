@@ -85,8 +85,8 @@ def test_divide(monkeypatch, num1, num2):
                         [(4, 2),
                         (10, 3.2),
                         (144, 12),
-                        ('y', 7),
-                        (-4, 2)])
+                        ('y', "Not an int."),
+                        (-4, "ERROR - Invalid Input")])
 def test_sq(num, out):
     assert sq(num) == out
 

@@ -99,6 +99,7 @@ def test_sq(num, out):
 # test 2: numbers succeed
 # test 3: spaces in string input succeed
 # test 4: empty strings succeed
+# Supposed to only accept letters as names -> set limitation
 @pytest.mark.parametrize("first,middle,last,expected",
                         [("Peter", "Benjamin", "Parker", "Hello!\nWelcome to the program Peter Benjamin Parker\nGlad to have you!"),
                         (1, 2, 3, "Hello!\nWelcome to the program 1 2 3\nGlad to have you!"),

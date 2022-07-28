@@ -67,19 +67,42 @@ def test_isPalindrome(temp):
 #first passes, second fails because of the y
 def geninputs():
     inputs = ['6','3']
-    inputs_2 = ['y','2']
 
     for item in inputs:
         yield item
-    
-    for item_2 in inputs_2:
-        yield item_2
 
 GEN = geninputs()
 def test_divide(monkeypatch):
     monkeypatch.setattr("builtins.input", lambda _: next(GEN))
 
     assert divide() == None
+
+#fails -> ZeroDivisionError
+def geninputs_2():
+    inputs = [1,0]
+
+    for item in inputs:
+        yield item
+
+GEN_2 = geninputs_2()
+def test_divide_2(monkeypatch):
+    monkeypatch.setattr("builtins.input", lambda _: next(GEN_2))
+
+    assert divide() == None
+
+#fails -> ValueError -> 'y' cannot be an int
+def geninputs_3():
+    inputs = ['y','4']
+
+    for item in inputs:
+        yield item
+
+GEN_3 = geninputs_3()
+def test_divide_3(monkeypatch):
+    monkeypatch.setattr("builtins.input", lambda _: next(GEN_3))
+
+    assert divide() == None
+
 
 #sq
 #first pass, second fail (round to 1 decimal), third pass, 4th fail -> TypeError, 5th fail -> math domain error -> cannot sqroot a neg number

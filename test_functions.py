@@ -19,18 +19,17 @@ def test_openFile(capsys, file, message):
 
 # numbers
 # testing division with int and floats
-# passes first 2, fails 3rd bc it isn't equal -> create if doesn't equal
-# fourth fails due to decimal rounding
-# 5th fails due to TypeError -> cannot be a string
-# 6th fails -> ZeroDivisionError -> cannot divide by zero
-# 7th passes bc -> False == 0
+# passes first 2
+# 3rd fails due to decimal rounding
+# 4th fails due to TypeError -> cannot be a string
+# 5th fails -> ZeroDivisionError -> cannot divide by zero
+# 6th passes bc -> False == 0
 @pytest.mark.parametrize("num1,num2,div",
                         [(4, 2, 2),
                         (8.6, 4.3, 2),
-                        (42, 7, 7),
-                        (45, 23, 1.9),
-                        ('6', '3', 2),
-                        (7, 0, 0),
+                        (45, 23, 2.0),
+                        ('6', '3', "Not integer."),
+                        (7, 0, "Cannot divide by zero."),
                         (False, 7, 0)])
 def test_numbers(num1, num2, div):
     assert numbers(num1, num2) == div

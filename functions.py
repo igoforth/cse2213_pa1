@@ -4,7 +4,7 @@ import math
 ## filename received as a parameter
 # CORRECTIONS:
 # added custom exceptions for empty string and not string
-# # try/except/else for empty string, file not found, not string
+# try/except/else for empty string, file not found, not string
 class NotStringError(Exception):
     pass
 class EmptyStringError(Exception):
@@ -27,8 +27,18 @@ def openFile(filename):
 
 ## takes two numbers and returns
 ## the result of a division
+# CORRECTIONS:
+# try/except/else for divide by zero, type error
+# added round function
 def numbers(num1, num2):
-    return num1 / num2
+    try:
+        result = round(num1 / num2)
+    except TypeError:
+        return "Not integer."
+    except ZeroDivisionError:
+        return "Cannot divide by zero."
+    else:
+        return result
 
 ## takes in two points
 ## finds the distance between the points

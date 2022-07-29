@@ -56,6 +56,10 @@ def dist(x1, y1, x2, y2):
 
 ## takes in a string -- reverses it
 ## then compares the two
+# CORRECTIONS:
+# try/except/else
+# catches if something isn't a palindrome
+# catches if its not a string
 def isPalindrome(temp):
     try:
         test = temp[::-1]
@@ -70,6 +74,10 @@ def isPalindrome(temp):
 
 ## has input to receive two numbers
 ## divides the two, then outputs the result
+# CORRECTIONS:
+# try/except/else
+# No return values, so print only
+# catches division errors & if not an int
 def divide():
     try:
         num1 = int(input("Enter a number: "))
@@ -84,6 +92,11 @@ def divide():
         print("Your numbers divided is:", div)
 
 ## returns the squareroot of a particular number
+# CORRECTIONS:
+# try/except/else
+# catches if not an int
+# catches if int is negative
+# rounds to 1 decimal place
 def sq(num):
     try:
         math.sqrt(num)
@@ -97,7 +110,11 @@ def sq(num):
 ## grabs user's name
 ## greets them by their entire name
 ## names should be strings
-## none failed, but paramater was names only, no numbers
+# CORRECTIONS:
+# none failed, but paramater was names only, no numbers
+# if/else
+# Needed string only parameters
+# all vars tested for if string
 def greetUser(first, middle, last):
     if(type(first) == str and type(middle) == str and type(last) == str):
         print("Hello!")
@@ -108,6 +125,10 @@ def greetUser(first, middle, last):
 
 ## takes in a Python list
 ## attempts to display the item at the index provided
+# CORRECTIONS:
+# try/except
+# tests if in range of list (pos or neg)
+# tests if int
 def displayItem(numbers, index):
     try:
             print("Your item at", index, "index is", numbers[index])

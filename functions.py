@@ -97,12 +97,23 @@ def sq(num):
 ## grabs user's name
 ## greets them by their entire name
 ## names should be strings
+## none failed, but paramater was names only, no numbers
 def greetUser(first, middle, last):
-    print("Hello!")
-    print("Welcome to the program", first, middle, last)
-    print("Glad to have you!")
+    if(type(first) == str and type(middle) == str and type(last) == str):
+        print("Hello!")
+        print("Welcome to the program", first, middle, last)
+        print("Glad to have you!")
+    else:
+        print("Not a string.")
 
 ## takes in a Python list
 ## attempts to display the item at the index provided
 def displayItem(numbers, index):
-    print("Your item at", index, "index is", numbers[index])
+    try:
+            print("Your item at", index, "index is", numbers[index])
+    except IndexError:
+        print("ERROR - Index out of range.")
+    except ValueError:
+        print("Not an integer.")
+    except TypeError:
+        print("Not an integer.")

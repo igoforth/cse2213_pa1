@@ -1,0 +1,1 @@
+{"py/object": "database.Database", "file": null, "users": {"test": {"py/object": "database.User", "password": "test", "cart": {"py/object": "database.Cart", "items": []}, "history": {"py/object": "database.History", "items": []}}}, "catalog": {"py/object": "database.Catalog", "items": {}}}
